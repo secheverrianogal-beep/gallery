@@ -65,7 +65,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.google.ai.edge.gallery.R
 import com.google.ai.edge.gallery.common.getModelStorageDir
-import com.google.ai.edge.gallery.common.isPixel10
+import com.google.ai.edge.gallery.common.isTensorG5
 import com.google.ai.edge.gallery.common.openSafeInputStream
 import com.google.ai.edge.gallery.data.Accelerator
 import com.google.ai.edge.gallery.data.Config
@@ -99,7 +99,7 @@ import kotlinx.coroutines.withContext
 private const val TAG = "AGModelImportDialog"
 
 private val SUPPORTED_ACCELERATORS: List<Accelerator> =
-  if (isPixel10()) {
+  if (isTensorG5()) {
     val accelerators = mutableListOf(Accelerator.CPU, Accelerator.NPU)
     accelerators.toList()
   } else {
