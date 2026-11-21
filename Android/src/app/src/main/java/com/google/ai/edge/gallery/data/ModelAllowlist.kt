@@ -18,7 +18,7 @@ package com.google.ai.edge.gallery.data
 
 import android.os.Build
 import android.util.Log
-import com.google.ai.edge.gallery.common.isPixel10
+import com.google.ai.edge.gallery.common.isTensorG5
 import com.google.ai.edge.gallery.common.isPixelDevice
 import com.google.gson.annotations.SerializedName
 
@@ -212,8 +212,8 @@ data class AllowedModel(
       for (item in items) {
         Accelerator.fromLabel(item.trim())?.let { parsedAccelerators.add(it) }
       }
-      // Remove GPU from pixel 10 devices for LLM models.
-      if (isPixel10() && isLlmModel) {
+      // Remove GPU from Tensor G5 devices for LLM models.
+      if (isTensorG5() && isLlmModel) {
         parsedAccelerators.remove(Accelerator.GPU)
       }
       if (parsedAccelerators.isNotEmpty()) {
